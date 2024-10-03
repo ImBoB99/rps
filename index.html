@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        /* 
+
+        rock rock
+        rock < paper
+        rock > scissors
+
+        paper paper
+        paper > rock
+        paper < scissors
+
+        scissors scissors
+        scissors < rock
+        scissors > paper
+
+        */
+
+        function getComputerChoice() {
+            random = Math.floor(Math.random() * 3 + 1)
+            if (random === 1) {
+                return 'rock'
+            } else if (random === 2) {
+                return 'paper'
+            } else if (random === 3) {
+                return 'scissors'
+            }
+        }
+
+        function getHumanChoice() {
+            let choice = prompt("Choose rock, paper or scissors");
+            return choice.toLowerCase();
+        }
+
+        function playGame() {
+            let humanScore = 0;
+            let computerScore = 0;
+
+            function playRound() {
+
+                let computerSelection = getComputerChoice();
+                let humanSelection = getHumanChoice();
+
+                console.log(computerSelection, humanSelection)
+
+                if (humanSelection === computerSelection) {
+                    console.log("It's a tie")
+                } else if (humanSelection === "rock" && computerSelection === "scissors") {
+                    console.log("You win, rock beats scissors")
+                    humanScore++;
+
+                } else if (humanSelection === "paper" && computerSelection === "rock") {
+                    console.log("You win, paper beats rock")
+                    humanScore++;
+                } else if (humanSelection === "scissors" && computerSelection === "paper") {
+                    console.log("You win, scissors beats paper")
+                    humanScore++;
+                } else {
+                    console.log(`${"You lose, " + computerSelection + "beats " + humanSelection}`)
+                    computerScore++;
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                playRound();
+                console.log(`${"Human: " + humanScore + "Puter: " + computerScore}`)
+            }
+        }
+
+    </script>
+</body>
+
+</html>
